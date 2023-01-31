@@ -35,12 +35,15 @@ function draw() {
 }
 
 function mousePressed() {
+    // checks each color for if inside it
+    dragging = 1;
     for (let i = 0; i < colorsArray.length; i++) {
         colorsArray[i].mousePressed();
     }
 }
 
 function mouseDragged() {
+    //drawing
     if (dragging) {
         strokeWeight(10);
         stroke(drawColor);
@@ -49,10 +52,12 @@ function mouseDragged() {
 }
 
 function mouseReleased() {
+    //stops the color when you release
     dragging = -1;
 }
 
 class ColorSelector {
+    //Class for the different colors on the left
     constructor(x, y, size, color) {
         this.x = x;
         this.y = y;
@@ -63,10 +68,11 @@ class ColorSelector {
     draw() {
         noStroke();
         fill(this.color);
-        square(this.x, this.y, this.size);
+        square(this.x, this.y, this.size); //draws the palatte
     }
 
     mousePressed() {
+        //checks which color you are inside
         let insideX = mouseX >= this.x && mouseX <= this.x + this.size;
         let insideY = mouseY >= this.y && mouseY <= this.y + this.size;
 
